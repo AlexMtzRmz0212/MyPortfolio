@@ -1,57 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My LaunchX Blog</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
-      text-align: center;
-    }
-    header {
-      background: #333;
-      color: white;
-      padding: 1rem;
-    }
-    main {
-      padding: 2rem;
-    }
-    a.button {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
-      background: #007BFF;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    a.button:hover {
-      background: #0056b3;
-    }
-    footer {
-      margin-top: 2rem;
-      font-size: 0.9em;
-      color: #666;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alex | Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
   <header>
-    <h1>Welcome to My LaunchX Blog</h1>
+    <nav class="navbar">
+      <div class="logo">Alex</div>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
   </header>
-  <main>
-    <h2>Hello World!</h2>
-    <p>This is my first GitHub Pages site.</p>
-    <a class="button" href="blog.html">Check Out My New Blog Template</a>
-  </main>
+
+  <section id="home" class="section hero fade-in">
+    <div class="hero-content">
+      <h1>Hello, I'm <span>Alex</span></h1>
+      <p>A Mechatronics Engineer & Automation Developer.</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
+  </section>
+
+  <section id="projects" class="section fade-in">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="assets/img/project1.png" alt="Project 1" />
+        <h3>Project Name 1</h3>
+        <p>Brief description of the project.</p>
+        <a href="#" class="btn small">View</a>
+      </div>
+      <div class="project-card">
+        <img src="assets/img/project2.png" alt="Project 2" />
+        <h3>Project Name 2</h3>
+        <p>Brief description of the project.</p>
+        <a href="#" class="btn small">View</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section fade-in">
+    <h2 class="section-title">About Me</h2>
+    <p class="about-text">
+      I’m Alex, a Mechatronics Engineer with experience in automation, design, and AI development.
+      I enjoy building solutions that merge hardware with software, delivering smart and efficient results.
+    </p>
+  </section>
+
+  <section id="contact" class="section fade-in">
+    <h2 class="section-title">Contact</h2>
+    <p>Let's connect! You can reach me on:</p>
+    <div class="contact-links">
+      <a href="https://github.com/YOURUSERNAME" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/YOURPROFILE" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:youremail@example.com">Email</a>
+    </div>
+  </section>
+
   <footer>
-    &copy; 2025 My LaunchX Blog
+    &copy; 2025 Alex. All rights reserved.
   </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
