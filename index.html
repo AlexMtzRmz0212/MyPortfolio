@@ -1,15 +1,478 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Alex | Portfolio</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background-color: #ffffff;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* DARK MODE */
+    body.dark {
+      background-color: #0f0f0f;
+      color: #e0e0e0;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 0.5rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark .navbar {
+      background: #1a1a1a;
+      border-bottom: 1px solid #333;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    body.dark .navbar.scrolled {
+      background: rgba(26, 26, 26, 0.95);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .navbar .logo {
+      color: #333;
+      font-weight: bold;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .logo .full-name {
+    display: inline-block;
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateX(0);
+    }
+
+    .logo .initials {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled .logo {
+      font-size: 1.3rem;
+    }
+
+    .navbar.scrolled .logo .full-name {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .navbar.scrolled .logo .initials {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    body.dark .navbar .logo {
+      color: #fff;
+    }
+
+    /* NAV LINKS */
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    body.dark .nav-links a {
+      color: #e0e0e0;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #f0a500;
+    }
+
+    /* THEME TOGGLE CONTAINER - Fixed positioning and z-index */
+    .theme-toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .theme-toggle-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-label-left,
+    .theme-label-right {
+      font-size: 0.85rem;
+      color: #333;
+      transition: all 0.3s ease;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    body.dark .theme-label-left,
+    body.dark .theme-label-right {
+      color: #e0e0e0;
+    }
+
+    .navbar.scrolled .theme-label-left,
+    .navbar.scrolled .theme-label-right {
+      opacity: 0;
+      transform: translateX(-10px);
+      pointer-events: none;
+    }
+
+    /* THEME TOGGLE BUTTON - Fixed clickability */
+    #theme-toggle {
+      position: relative;
+      width: 60px;
+      height: 30px;
+      background: #ddd;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+      outline: none;
+      z-index: 1002;
+    }
+
+    #theme-toggle:focus {
+      outline: 2px solid #f0a500;
+      outline-offset: 2px;
+    }
+
+    body.dark #theme-toggle {
+      background: #555;
+    }
+
+    #theme-toggle::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      pointer-events: none;
+    }
+
+    body.dark #theme-toggle::before {
+      transform: translateX(30px);
+      background: #333;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1rem;
+      margin-top: 70px;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content span {
+      color: #f0a500;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: #f0a500;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #c87c00;
+    }
+
+    .btn.small {
+      padding: 0.4rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 4rem 2rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #444;
+    }
+
+    body.dark .section-title {
+      color: #ddd;
+    }
+
+    /* PROJECTS */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .project-card {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      border: 1px solid #e0e0e0;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    body.dark .project-card {
+      background: #222;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      border: 1px solid #444;
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    /* ABOUT */
+    .about-text {
+      max-width: 700px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    body.dark .about-text {
+      color: #ccc;
+    }
+
+    /* CONTACT */
+    .contact-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .contact-links a {
+      color: #2575fc;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-links a:hover {
+      color: #6a11cb;
+    }
+
+    body.dark .contact-links a {
+      color: #f0a500;
+    }
+
+    body.dark .contact-links a:hover {
+      color: #fbbf24;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: white;
+      margin-top: 2rem;
+    }
+
+    body.dark footer {
+      background: #111;
+    }
+
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      justify-content: center;
+      gap: 6px;
+      z-index: 1003;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 25px;
+      background: #333;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    body.dark .hamburger span {
+      background: #fff;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(0px, 9px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(0px, -9px);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: #ffffff;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        transition: right 0.3s ease;
+        padding-top: 2rem;
+        list-style: none;
+        z-index: 999;
+      }
+      
+      body.dark .nav-links {
+        background: #1a1a1a;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .nav-links li {
+        margin: 1rem 0;
+      }
+      
+      .theme-toggle-container {
+        order: -1;
+        margin-right: auto;
+        margin-left: 1rem;
+      }
+      
+      .theme-toggle-wrapper {
+        gap: 0.3rem;
+      }
+      
+      .theme-label-left,
+      .theme-label-right {
+        font-size: 0.75rem;
+      }
+      
+      #theme-toggle {
+        width: 50px;
+        height: 25px;
+      }
+      
+      #theme-toggle::before {
+        width: 19px;
+        height: 19px;
+        top: 3px;
+        left: 3px;
+      }
+      
+      body.dark #theme-toggle::before {
+        transform: translateX(25px);
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo">Alex</div>
+      <div class="logo">
+        <span class="full-name">Alejandro</span>
+        <span class="initials">Alex</span>
+      </div>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span>
         <span></span>
@@ -22,16 +485,19 @@
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <div class="theme-toggle-container">
-        <span class="theme-label">Dark</span>
-        <button id="theme-toggle" aria-label="Toggle dark/light mode"></button>
+        <div class="theme-toggle-wrapper">
+          <span class="theme-label-left">Light</span>
+          <button id="theme-toggle" aria-label="Toggle dark/light mode"></button>
+          <span class="theme-label-right">Dark</span>
+        </div>
       </div>
     </nav>
   </header>
 
   <section id="home" class="section hero fade-in">
     <div class="hero-content">
-      <h1>Hello, I'm <span>Alex</span></h1>
-      <p>A Mechatronics Engineer & Automation Developer.</p>
+      <h1>Hello, I'm <span>Alejandro.</span></h1>
+      <p>But you can call me Alex.</p>
       <a href="#projects" class="btn">View My Work</a>
     </div>
   </section>
@@ -40,13 +506,13 @@
     <h2 class="section-title">Projects</h2>
     <div class="project-grid">
       <div class="project-card">
-        <img src="assets/img/project1.png" alt="Project 1" />
+        <img src="https://via.placeholder.com/300x200/6a11cb/ffffff?text=Project+1" alt="Project 1" />
         <h3>Project Name 1</h3>
         <p>Brief description of the project.</p>
         <a href="#" class="btn small">View</a>
       </div>
       <div class="project-card">
-        <img src="assets/img/project2.png" alt="Project 2" />
+        <img src="https://via.placeholder.com/300x200/2575fc/ffffff?text=Project+2" alt="Project 2" />
         <h3>Project Name 2</h3>
         <p>Brief description of the project.</p>
         <a href="#" class="btn small">View</a>
@@ -57,7 +523,7 @@
   <section id="about" class="section fade-in">
     <h2 class="section-title">About Me</h2>
     <p class="about-text">
-      I’m Alex, a Mechatronics Engineer with experience in automation, design, and AI development.
+      I'm Alex, a Mechatronics Engineer with experience in automation, design, and AI development.
       I enjoy building solutions that merge hardware with software, delivering smart and efficient results.
     </p>
   </section>
@@ -76,6 +542,82 @@
     &copy; 2025 Alex. All rights reserved.
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script>
+    // Smooth scrolling
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Section fade-in on scroll
+    const sections = document.querySelectorAll('.section');
+
+    function checkSections() {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop < triggerBottom) {
+          section.classList.add('visible');
+        }
+      });
+    }
+
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+
+    function handleNavbarScroll() {
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      checkSections();
+      handleNavbarScroll();
+    });
+    window.addEventListener('load', checkSections);
+
+    // Dark/light mode toggle - Fixed to work without localStorage
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Initialize theme
+    let isDark = false;
+
+    themeToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      isDark = !isDark;
+      
+      if (isDark) {
+        body.classList.add('dark');
+      } else {
+        body.classList.remove('dark');
+      }
+    });
+
+    // Mobile hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>

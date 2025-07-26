@@ -19,7 +19,22 @@ function checkSections() {
     }
   });
 }
-window.addEventListener('scroll', checkSections);
+
+// Navbar scroll effect
+const navbar = document.querySelector('.navbar');
+
+function handleNavbarScroll() {
+  if (window.scrollY > 100) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}
+
+window.addEventListener('scroll', () => {
+  checkSections();
+  handleNavbarScroll();
+});
 window.addEventListener('load', checkSections);
 
 // Dark/light mode toggle
