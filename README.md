@@ -1,6 +1,6 @@
 # 🌐 Alex's Portfolio
 
-This is my personal developer portfolio – a responsive, single-page website showcasing my work, skills, and ways to get in touch.
+This is my personal developer portfolio, a responsive, single-page website showcasing my work, skills, and ways to get in touch.
 
 ## 🚀 Features
 
