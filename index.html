@@ -36,34 +36,102 @@
   </header>
 
   <section id="home" class="section hero fade-in">
-    <div class="hero-content">
-      <h1>Hello, I'm <span>Alejandro.</span></h1>
-      <p>AI & Automation Engineer | Software Developer | Data-Driven Problem Solver</p>
-      <a href="#projects" class="btn">View My Work</a>
-    </div>
+      <div class="hero-content">
+          <h1>Hola, my name is <span>Alejandro.</span></h1>
+          <p class="subtitle">(but you can call me Alex)</p>
+          <p>AI & Automation Engineer | Software Developer | Data-Driven Problem Solver</p>
+          <a href="#projects" class="btn">View My Work</a>
+      </div>
+  </section>
+  <section id="about" class="section fade-in">
+    <h2 class="section-title">About Me</h2>
+    <!-- <p class="about-text">
+      I'm Alex, a Mechatronics Engineer with a background in Management and a Graduate Certificate in AI Software Development. 
+      I bridge industrial automation and software development, designing SCADA systems, building AI/ML solutions, and creating software tools that drive efficiency. 
+      Skilled in Python, SQL, TensorFlow, and PLC programming, I thrive on solving complex problems with data-driven strategies. 
+      Fluent in English and Spanish (with French and German on the way), I bring cross-cultural collaboration and technical versatility to every project.
+    </p> -->
+    <!-- <p class="about-text">
+      I’m Alex: engineer, coder, and the guy you call when your automation stops automating. I build SCADA systems, train AI like it’s a pet project, and design software tools that turn “this takes forever” into “done already?” Python, SQL, TensorFlow, PLCs — yeah, I speak fluent machine.
+      Languages? English and Spanish are a given. French and German are just bonus DLC I’m unlocking. When I’m not busy making machines smarter, I’m automating my own life, playing baseball, or taking things apart just to prove I can put them back together better than before.
+      Efficiency is my superpower — coffee just keeps it running at max RPM.
+    </p> -->
+    <p class="about-text">
+      I’m Alex. Engineer, Coder, and Genius (working on the billionaire, playboy, philanthropist part). Basically, the guy you call when your automation stops automating. I build SCADA systems, train my AIs as they are my pets, and design software tools that turn “this takes forever” into “done already?” Python, SQL, TensorFlow, PLCs. Yeah, I speak fluent machine, you name it.
+      Human Languages? English and Spanish are a given. French and German are current bonus DLC I’m unlocking. 
+    </p>
+    <p class="about-text">
+      When I’m not busy making machines smarter, I’m automating my own life, playing baseball, or taking things apart just to prove I can put them back together better than before.
+      Efficiency is my superpower, coffee just keeps it running at max RPM.
+    </p>
+    <!-- <p class="about-text">
+      When I’m not coding, you’ll probably find me learning a new language, thinking up ways to automate my daily life, maybe playing baseball or other sports, or figuring out how things work just because I’m curious.
+    </p> -->
+    <p class="about-text">
+      Go ahead and check out my projects below. If you like what you see or just want to chat about tech, sports, or life, hit me up in the contact section!
   </section>
 
   <section id="projects" class="section fade-in">
     <h2 class="section-title">Projects</h2>
     <div class="project-grid">
-      <div class="project-card">
-        <img src="https://www.mlbstatic.com/team-logos/league-on-dark/1.svg" 
-        alt="MLB Divisions and Leagues Map" />
-        <h3>MLB Divisions and Leagues Map</h3>
-        <p>An interactive Major League Baseball (MLB) map that visualizes all 30 MLB teams with smart marker separation, division path connections, and team logos. All in a single interactive HTML page.</p>
-        <div class="project-links">
-          <a href="https://alexmtzrmz0212.github.io/MLB/" class="btn small">Live Demo</a>
-          <a href="https://github.com/AlexMtzRmz0212/MLB" class="btn small">GitHub</a>
-        </div>
+
+
+    <div class="project-card">
+      
+      <img src="https://miro.medium.com/v2/resize:fit:975/1*WdN6Wn7afiXdZ1QqvlaWXw@2x.jpeg" 
+          alt="Divisions and Leagues Maps" class="sport-image" />
+      <h3 class="sport-title">Divisions and Leagues Maps</h3>
+      <p class="sport-description">Interactive Sports Leagues Maps that visualize all teams of each league with smart marker separation, division path connections, and team logos. All in a single interactive HTML page for each sport.</p>
+      
+      <div class="sports-selector">
+        <label for="sport-dropdown">Select Sport:</label>
+        <select id="sport-dropdown" class="sport-dropdown">
+          <option value="mlb" selected>MLB</option>
+          <option value="nfl">NFL</option>
+          <option value="nba">NBA</option>
+          <option value="nhl">NHL</option>
+        </select>
+        <img id="sport-icon" src="https://www.mlbstatic.com/team-logos/league-on-dark/1.svg" alt="Sport icon" class="sport-icon">
       </div>
+      
+      <div class="project-links">
+        <!-- MLB Links (visible by default) -->
+        <div class="sport-links mlb-links">
+          <a href="https://alexmtzrmz0212.github.io/MLB/" class="btn small">MLB Live Demo</a>
+          <a href="https://github.com/AlexMtzRmz0212/MLB" class="btn small">MLB GitHub</a>
+        </div>
+        
+        <!-- NFL Links (hidden by default) -->
+        <div class="sport-links nfl-links" style="display: none;">
+          <a href="https://alexmtzrmz0212.github.io/NFL/" class="btn small">NFL Live Demo</a>
+          <a href="https://github.com/AlexMtzRmz0212/NFL" class="btn small">NFL GitHub</a>
+        </div>
+
+        <!-- NBA Links -->
+        <div class="sport-links nba-links" style="display: none;">
+          <a href="#" class="btn small disabled" title="Coming Soon">NBA Live Demo (Coming Soon)</a>
+          <a href="#" class="btn small disabled" title="Coming Soon">NBA GitHub (Coming Soon)</a>
+        </div>
+
+        <!-- NHL Links -->
+        <div class="sport-links nhl-links" style="display: none;">
+          <a href="#" class="btn small disabled" title="Coming Soon">NHL Live Demo (Coming Soon)</a>
+          <a href="#" class="btn small disabled" title="Coming Soon">NHL GitHub (Coming Soon)</a>
+        </div>
+
+
+      </div>
+    </div>
+          
+      
       <div class="project-card">
         <img src="https://static.wixstatic.com/media/b141ee_8dbc2063ed9a4dd2bdce7cba5d97f29c~mv2.png/v1/fill/w_512,h_512,al_c,q_85,enc_avif,quality_auto/b141ee_8dbc2063ed9a4dd2bdce7cba5d97f29c~mv2.png" 
         alt="Express Entry Analysis" />
         <h3>Express Entry Analysis</h3>
         <p>Data Analysis of Express Entry draw trends (CRS scores, draw sizes, and distributions).</p>
         <div class="project-links">
-          <!-- <a href="#" class="btn small">Live Demo</a>
-          <a href="#" class="btn small">GitHub</a> -->
+          <!-- <a href="#" class="btn small">Live Demo</a>-->
+          <a href="https://github.com/AlexMtzRmz0212/ExpressEntryDrawsAnalysis" class="btn small">GitHub</a>
         </div>
       </div>
       <div class="project-card">
@@ -72,24 +140,11 @@
         <h3>Habits Analysis</h3>
         <p>Data analysis of personal habits and routines to identify patterns and areas for improvement.</p>
         <div class="project-links">
-          <!-- <a href="#" class="btn small" target="_blank">Live Demo</a>
-          <a href="#" class="btn small" target="_blank">GitHub</a> -->
+          <!-- <a href="#" class="btn small" target="_blank">Live Demo</a> 
+          <a href="#" class="btn small" target="_blank">GitHub</a>-->
         </div>
       </div>
     </div>
-  </section>
-
-  <section id="about" class="section fade-in">
-    <h2 class="section-title">About Me</h2>
-    <p class="about-text">
-      I'm Alex, a Mechatronics Engineer with a background in Management and a Graduate Certificate in AI Software Development. 
-      I bridge industrial automation and software development, designing SCADA systems, building AI/ML solutions, and creating software tools that drive efficiency. 
-      Skilled in Python, SQL, TensorFlow, and PLC programming, I thrive on solving complex problems with data-driven strategies. 
-      Fluent in English and Spanish (with French and German on the way), I bring cross-cultural collaboration and technical versatility to every project.
-    </p>
-    <p class="about-text">
-      When I’m not coding, you’ll probably find me learning a new language, thinking up ways to automate my daily life, maybe playing baseball or other sports, or figuring out how things work just because I’m curious.
-    </p>
   </section>
 
   <section id="contact" class="section fade-in">
@@ -104,6 +159,12 @@
       </a>
       <a href="mailto:alejandro.martinez.rmz97@gmail.com">
         <i class="fas fa-envelope"></i> Email
+      </a>
+      <a href="https://www.instagram.com/alexmtzrmz/" target="_blank" rel="noopener">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+      <a href="https://www.facebook.com/Alejandro.Martinez.1997" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i> Facebook
       </a>
     </div>
   </section>

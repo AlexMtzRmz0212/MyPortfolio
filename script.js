@@ -1,3 +1,57 @@
+// Wait for the page content to load
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Get the dropdown and image elements by their ID
+  const sportDropdown = document.getElementById('sport-dropdown');
+  const sportIcon = document.getElementById('sport-icon');
+
+  // Create an object to map dropdown values to image paths
+  const sportImagePaths = {
+    mlb: 'https://www.mlbstatic.com/team-logos/league-on-dark/1.svg',
+    nfl: 'https://static.www.nfl.com/image/upload/v1554321393/league/nvfr7ogywskqrfaiu38m.svg',
+    nba: 'https://cdn.nba.com/logos/leagues/logo-nba.svg',
+    nhl: 'https://media.d3.nhle.com/image/private/t_q-best/prd/assets/nhl/logos/nhl_shield_wm_on_dark_fqkbph'
+  };
+
+  // Add an event listener that fires when the dropdown value changes
+  sportDropdown.addEventListener('change', (event) => {
+    // Get the newly selected value (e.g., 'nfl')
+    const selectedSport = event.target.value;
+    
+    // Find the corresponding image path from our object
+    const newImagePath = sportImagePaths[selectedSport];
+    
+    // Update the image's src attribute
+    if (newImagePath) {
+      sportIcon.src = newImagePath;
+    }
+  });
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const sportDropdown = document.getElementById('sport-dropdown');
+  
+  sportDropdown.addEventListener('change', function() {
+    const selectedSport = this.value;
+    // You would implement the logic to change content based on selected sport
+    console.log('Selected sport:', selectedSport);
+    // This is where you would update the image, title, description, and links
+  });
+});
+
+document.getElementById('sport-dropdown').addEventListener('change', function() {
+  const selectedSport = this.value;
+  
+  // Hide all links
+  document.querySelectorAll('.sport-links').forEach(link => {
+    link.style.display = 'none';
+  });
+  
+  // Show selected sport's links
+  document.querySelector(`.${selectedSport}-links`).style.display = 'block';
+});
+
 // Smooth scrolling
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', e => {

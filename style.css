@@ -5,7 +5,29 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.sports-selector {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#sport-icon {
+  width: 100px;  /* Set the width you want */
+  height: auto; /* Browser calculates the height automatically */
+}
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.sport-dropdown {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
@@ -201,10 +223,17 @@ body.dark #theme-toggle::before {
 }
 
 /* HERO */
+.subtitle {
+    font-size: 1.6rem;      /* Adjust size as needed */
+    font-style: italic;
+    color: #ccc;            /* A lighter color to make it subtle */
+    margin-top: -10px;      /* Pull it closer to the h1 */
+    margin-bottom: 20px;    /* Add space below it */
+}
 .hero {
     background: linear-gradient(to right, #6a11cb, #2575fc);
     color: white;
-    height: 90vh;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -292,7 +321,7 @@ body.dark .section-title {
 }
 
 .project-card {
-    background: #f9f9f9;
+    background: #c9c9c98f;
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -338,7 +367,8 @@ body.dark .project-card h3 {
 
 .project-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 4px;
     margin-top: auto;
 }
 
