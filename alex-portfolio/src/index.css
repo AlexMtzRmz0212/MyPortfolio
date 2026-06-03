@@ -1,4 +1,3 @@
-
 /* RESET */
 * {
     margin: 0;
@@ -12,8 +11,8 @@
   gap: 10px;
 }
 #sport-icon {
-  width: 100px;  /* Set the width you want */
-  height: auto; /* Browser calculates the height automatically */
+  width: 100px;
+  height: auto;
 }
 .disabled {
   opacity: 0.6;
@@ -87,10 +86,10 @@ body.dark .navbar.scrolled {
 }
 
 .logo .full-name {
-display: inline-block;
-transition: all 0.3s ease;
-opacity: 1;
-transform: translateX(0);
+    display: inline-block;
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .logo .initials {
@@ -144,7 +143,7 @@ body.dark .nav-links a {
     color: #f0a500;
 }
 
-/* THEME TOGGLE CONTAINER - Fixed positioning and z-index */
+/* THEME TOGGLE CONTAINER */
 .theme-toggle-container {
     display: flex;
     align-items: center;
@@ -180,7 +179,7 @@ body.dark .theme-label-right {
     pointer-events: none;
 }
 
-/* THEME TOGGLE BUTTON - Fixed clickability */
+/* THEME TOGGLE BUTTON */
 #theme-toggle {
     position: relative;
     width: 60px;
@@ -224,11 +223,11 @@ body.dark #theme-toggle::before {
 
 /* HERO */
 .subtitle {
-    font-size: 1.6rem;      /* Adjust size as needed */
+    font-size: 1.6rem;
     font-style: italic;
-    color: #ccc;            /* A lighter color to make it subtle */
-    margin-top: -10px;      /* Pull it closer to the h1 */
-    margin-bottom: 20px;    /* Add space below it */
+    color: #ccc;
+    margin-top: -10px;
+    margin-bottom: 20px;
 }
 .hero {
     background: linear-gradient(to right, #6a11cb, #2575fc);
@@ -474,73 +473,73 @@ body.dark .hamburger span {
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .hamburger {
-    display: flex;
+        display: flex;
     }
     
     .nav-links {
-    position: fixed;
-    top: 70px;
-    right: -100%;
-    width: 100%;
-    height: calc(100vh - 70px);
-    background: #ffffff;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    transition: right 0.3s ease;
-    padding-top: 2rem;
-    list-style: none;
-    z-index: 999;
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: #ffffff;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        transition: right 0.3s ease;
+        padding-top: 2rem;
+        list-style: none;
+        z-index: 999;
     }
     
     body.dark .nav-links {
-    background: #1a1a1a;
+        background: #1a1a1a;
     }
     
     .nav-links.active {
-    right: 0;
+        right: 0;
     }
     
     .nav-links li {
-    margin: 1rem 0;
+        margin: 1rem 0;
     }
     
     .theme-toggle-container {
-    order: -1;
-    margin-right: auto;
-    margin-left: 1rem;
+        order: -1;
+        margin-right: auto;
+        margin-left: 1rem;
     }
     
     .theme-toggle-wrapper {
-    gap: 0.3rem;
+        gap: 0.3rem;
     }
     
     .theme-label-left,
     .theme-label-right {
-    font-size: 0.75rem;
+        font-size: 0.75rem;
     }
     
     #theme-toggle {
-    width: 50px;
-    height: 25px;
+        width: 50px;
+        height: 25px;
     }
     
     #theme-toggle::before {
-    width: 19px;
-    height: 19px;
-    top: 3px;
-    left: 3px;
+        width: 19px;
+        height: 19px;
+        top: 3px;
+        left: 3px;
     }
     
     body.dark #theme-toggle::before {
-    transform: translateX(25px);
+        transform: translateX(25px);
     }
 
     .hero-content h1 {
-    font-size: 2.2rem;
+        font-size: 2.2rem;
     }
 
     .project-grid {
-    grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
 }

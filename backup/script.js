@@ -1,3 +1,4 @@
+// script.js
 // Wait for the page content to load
 document.addEventListener('DOMContentLoaded', () => {
 
