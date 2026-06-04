@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from "@vercel/analytics/react";
 
 const Navbar = ({ isDark, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -209,6 +210,8 @@ export default function App() {
       <footer>
         &copy; 2025 Alex. All rights reserved.
       </footer>
+
+      <Analytics />
     </>
   );
 }
