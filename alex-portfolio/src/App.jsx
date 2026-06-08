@@ -1,53 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Analytics } from "@vercel/analytics/react";
+// src/App.jsx
+import { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
+import { Background, Navbar, Footer } from '@alex_mtz/bittobyte-ui';
 
-const Navbar = ({ isDark, toggleTheme }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 100);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleNavClick = (e, targetId) => {
-    e.preventDefault();
-    setIsMenuOpen(false);
-    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <header>
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="logo">
-          <span className="full-name">Alejandro</span>
-          <span className="initials">Alex</span>
-        </div>
-        <button 
-          className={`hamburger ${isMenuOpen ? 'active' : ''}`} 
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span></span><span></span><span></span>
-        </button>
-        <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><a href="#home" className="nav-link" onClick={(e) => handleNavClick(e, '#home')}>Home</a></li>
-          <li><a href="#projects" className="nav-link" onClick={(e) => handleNavClick(e, '#projects')}>Projects</a></li>
-          <li><a href="#about" className="nav-link" onClick={(e) => handleNavClick(e, '#about')}>About</a></li>
-          <li><a href="#contact" className="nav-link" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a></li>
-        </ul>
-        <div className="theme-toggle-container">
-          <div className="theme-toggle-wrapper">
-            <span className="theme-label-left">Light</span>
-            <button id="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark/light mode"></button>
-            <span className="theme-label-right">Dark</span>
-          </div>
-        </div>
-      </nav>
-    </header>
-  );
-};
+const PROFILE_LINKS = [
+  { label: 'Home',     href: '#home' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'About',    href: '#about' },
+  { label: 'Contact',  href: '#contact' },
+];
 
 const Projects = () => {
   const [selectedSport, setSelectedSport] = useState('mlb');
@@ -57,87 +18,82 @@ const Projects = () => {
       icon: 'https://www.mlbstatic.com/team-logos/league-on-dark/1.svg',
       demo: 'https://alexmtzrmz0212.github.io/MLB/',
       github: 'https://github.com/AlexMtzRmz0212/MLB',
-      disabled: false
+      disabled: false,
     },
     nfl: {
       icon: 'https://static.www.nfl.com/image/upload/v1554321393/league/nvfr7ogywskqrfaiu38m.svg',
       demo: 'https://alexmtzrmz0212.github.io/NFL/',
       github: 'https://github.com/AlexMtzRmz0212/NFL',
-      disabled: false
+      disabled: false,
     },
-    nba: {
-      icon: 'https://cdn.nba.com/logos/leagues/logo-nba.svg',
-      disabled: true
-    },
-    nhl: {
-      icon: 'https://media.d3.nhle.com/image/private/t_q-best/prd/assets/nhl/logos/nhl_shield_wm_on_dark_fqkbph',
-      disabled: true
-    }
+    nba: { icon: 'https://cdn.nba.com/logos/leagues/logo-nba.svg', disabled: true },
+    nhl: { icon: 'https://media.d3.nhle.com/image/private/t_q-best/prd/assets/nhl/logos/nhl_shield_wm_on_dark_fqkbph', disabled: true },
   };
 
   const current = sportData[selectedSport];
 
   return (
-    <section id="projects" className="section fade-in">
-      <h2 className="section-title">Projects</h2>
-      <div className="project-grid">
-        
-        <div className="project-card">
-          <img src="https://miro.medium.com/v2/resize:fit:975/1*WdN6Wn7afiXdZ1QqvlaWXw@2x.jpeg" alt="Divisions and Leagues Maps" className="sport-image" />
-          <h3 className="sport-title">Divisions and Leagues Maps</h3>
-          <p className="sport-description">Interactive Sports Leagues Maps that visualize all teams of each league with smart marker separation, division path connections, and team logos. All in a single interactive HTML page for each sport.</p>
-          
-          <div className="sports-selector">
-            <label htmlFor="sport-dropdown">Select Sport:</label>
-            <select id="sport-dropdown" className="sport-dropdown" value={selectedSport} onChange={(e) => setSelectedSport(e.target.value)}>
+    <section id="projects" className="py-24 px-6 max-w-6xl mx-auto">
+      <h2 className="text-3xl font-bold text-center mb-12">Projects</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div className="rounded-xl border border-white/10 bg-white/5 p-6 flex flex-col gap-4">
+          <img src="https://miro.medium.com/v2/resize:fit:975/1*WdN6Wn7afiXdZ1QqvlaWXw@2x.jpeg" alt="Divisions and Leagues Maps" className="w-full h-44 object-cover rounded-lg" />
+          <h3 className="text-lg font-semibold">Divisions and Leagues Maps</h3>
+          <p className="text-sm text-gray-400 flex-grow">Interactive Sports Leagues Maps that visualize all teams of each league with smart marker separation, division path connections, and team logos. All in a single interactive HTML page for each sport.</p>
+          <div className="flex items-center gap-3">
+            <label className="text-sm text-gray-400">Sport:</label>
+            <select
+              value={selectedSport}
+              onChange={(e) => setSelectedSport(e.target.value)}
+              className="rounded-md border border-white/10 bg-gray-900 px-3 py-1.5 text-sm text-gray-300"
+            >
               <option value="mlb">MLB</option>
               <option value="nfl">NFL</option>
               <option value="nba">NBA</option>
               <option value="nhl">NHL</option>
             </select>
-            <img id="sport-icon" src={current.icon} alt="Sport icon" className="sport-icon" />
+            <img src={current.icon} alt="Sport icon" className="h-8 w-auto" />
           </div>
-          
-          <div className="project-links">
+          <div className="flex gap-3 mt-auto">
             {current.disabled ? (
               <>
-                <a href="#" className="btn small disabled">Live Demo (Coming Soon)</a>
-                <a href="#" className="btn small disabled">GitHub (Coming Soon)</a>
+                <span className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-gray-500">Demo (Soon)</span>
+                <span className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-gray-500">GitHub (Soon)</span>
               </>
             ) : (
               <>
-                <a href={current.demo} className="btn small" target="_blank" rel="noreferrer">Live Demo</a>
-                <a href={current.github} className="btn small" target="_blank" rel="noreferrer">GitHub</a>
+                <a href={current.demo} target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">Live Demo</a>
+                <a href={current.github} target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">GitHub</a>
               </>
             )}
           </div>
         </div>
 
-        <div className="project-card">
-          <img src="Images/Sports Analytics Hub.png" alt="Sports Analytics Hub" />
-          <h3>Sports Hub</h3>
-          <p>A dynamic dashboard for exploring sports data across different leagues. Features an interactive season timeline, quick stats, and a curated list of analytics project ideas, built with a clean UI and powered by Plotly for visualizations.</p>
-          <div className="project-links">
-            <a href="https://alexmtzrmz0212.github.io/Sports/" className="btn small" target="_blank" rel="noreferrer">Live Demo</a>
-            <a href="https://github.com/AlexMtzRmz0212/Sports" className="btn small" target="_blank" rel="noreferrer">GitHub</a>
+        <div className="rounded-xl border border-white/10 bg-white/5 p-6 flex flex-col gap-4">
+          <img src="Images/Sports Analytics Hub.png" alt="Sports Analytics Hub" className="w-full h-44 object-cover rounded-lg" />
+          <h3 className="text-lg font-semibold">Sports Hub</h3>
+          <p className="text-sm text-gray-400 flex-grow">A dynamic dashboard for exploring sports data across different leagues. Features an interactive season timeline, quick stats, and a curated list of analytics project ideas, built with a clean UI and powered by Plotly for visualizations.</p>
+          <div className="flex gap-3 mt-auto">
+            <a href="https://alexmtzrmz0212.github.io/Sports/" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">Live Demo</a>
+            <a href="https://github.com/AlexMtzRmz0212/Sports" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">GitHub</a>
           </div>
         </div>
 
-        <div className="project-card">
-          <img src="Images/EE.png" alt="Express Entry Analysis" />
-          <h3>Express Entry Analysis</h3>
-          <p>Data Analysis of Express Entry draw trends (CRS scores, draw sizes, and distributions).</p>
-          <div className="project-links">
-            <a href="https://alexmtzrmz0212.github.io/ExpressEntryDrawsAnalysis/" className="btn small" target="_blank" rel="noreferrer">Live Demo</a>
-            <a href="https://github.com/AlexMtzRmz0212/ExpressEntryDrawsAnalysis" className="btn small" target="_blank" rel="noreferrer">GitHub</a>
+        <div className="rounded-xl border border-white/10 bg-white/5 p-6 flex flex-col gap-4">
+          <img src="Images/EE.png" alt="Express Entry Analysis" className="w-full h-44 object-cover rounded-lg" />
+          <h3 className="text-lg font-semibold">Express Entry Analysis</h3>
+          <p className="text-sm text-gray-400 flex-grow">Data Analysis of Express Entry draw trends (CRS scores, draw sizes, and distributions).</p>
+          <div className="flex gap-3 mt-auto">
+            <a href="https://alexmtzrmz0212.github.io/ExpressEntryDrawsAnalysis/" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">Live Demo</a>
+            <a href="https://github.com/AlexMtzRmz0212/ExpressEntryDrawsAnalysis" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">GitHub</a>
           </div>
         </div>
 
-        <div className="project-card">
-          <img src="https://static.wixstatic.com/media/b141ee_8dbc2063ed9a4dd2bdce7cba5d97f29c~mv2.png/v1/fill/w_512,h_512,al_c,q_85,enc_avif,quality_auto/b141ee_8dbc2063ed9a4dd2bdce7cba5d97f29c~mv2.png" alt="Habits Analysis" />
-          <h3>Habits Analysis</h3>
-          <p>Data analysis of personal habits and routines to identify patterns and areas for improvement.</p>
-          <div className="project-links"></div>
+        <div className="rounded-xl border border-white/10 bg-white/5 p-6 flex flex-col gap-4">
+          <img src="https://static.wixstatic.com/media/b141ee_8dbc2063ed9a4dd2bdce7cba5d97f29c~mv2.png/v1/fill/w_512,h_512,al_c,q_85,enc_avif,quality_auto/b141ee_8dbc2063ed9a4dd2bdce7cba5d97f29c~mv2.png" alt="Habits Analysis" className="w-full h-44 object-cover rounded-lg" />
+          <h3 className="text-lg font-semibold">Habits Analysis</h3>
+          <p className="text-sm text-gray-400 flex-grow">Data analysis of personal habits and routines to identify patterns and areas for improvement.</p>
         </div>
 
       </div>
@@ -146,72 +102,97 @@ const Projects = () => {
 };
 
 export default function App() {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    if (isDark) document.body.classList.add('dark');
-    else document.body.classList.remove('dark');
-  }, [isDark]);
-
   useEffect(() => {
     const handleScroll = () => {
       const triggerBottom = window.innerHeight * 0.85;
-      document.querySelectorAll('.section').forEach(section => {
-        if (section.getBoundingClientRect().top < triggerBottom) {
-          section.classList.add('visible');
+      document.querySelectorAll('.reveal').forEach((el) => {
+        if (el.getBoundingClientRect().top < triggerBottom) {
+          el.classList.add('visible');
         }
       });
     };
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); 
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <>
-      <Navbar isDark={isDark} toggleTheme={() => setIsDark(!isDark)} />
-      
-      <section id="home" className="section hero fade-in">
-        <div className="hero-content">
-          <h1>Hola, my name is <span>Alejandro.</span></h1>
-          <p className="subtitle">(but you can call me Alex)</p>
-          <p>AI & Automation Engineer | Software Developer | Data-Driven Problem Solver</p>
-          <a href="#projects" className="btn" onClick={(e) => {
-            e.preventDefault();
-            document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' });
-          }}>View My Work</a>
-        </div>
-      </section>
+    <div className="relative min-h-screen bg-gray-950 font-sans text-gray-100">
+      <Background />
+      <Navbar
+        links={PROFILE_LINKS}
+        logoText="Alex"
+        logoHref="#home"
+        githubUser="AlexMtzRmz0212"
+      />
 
-      <section id="about" className="section fade-in">
-        <h2 className="section-title">About Me</h2>
-        <p className="about-text">
-          I’m Alex. Engineer, Coder, and Genius (working on the billionaire, playboy, philanthropist part). Basically, the guy you call when your automation stops automating. I build SCADA systems, train my AIs as they are my pets, and design software tools that turn “this takes forever” into “done already?” Python, SQL, TensorFlow, PLCs. Yeah, I speak fluent machine, you name it.<br/><br/>
-          Human Languages? English and Spanish are a given. French and German are current bonus DLC I’m unlocking.<br/><br/>
-          When I’m not busy making machines smarter, I’m automating my own life, playing baseball, or taking things apart just to prove I can put them back together better than before. Efficiency is my superpower, coffee just keeps it running at max RPM.<br/><br/>
-          Go ahead and check out my projects below. If you like what you see or just want to chat about tech, sports, or life, hit me up in the contact section!
-        </p>
-      </section>
+      <main className="pt-16">
 
-      <Projects />
+        <section id="home" className="flex min-h-screen items-center justify-center px-6 text-center">
+          <div className="flex flex-col items-center gap-6">
+            <h1 className="text-5xl font-bold tracking-tight md:text-6xl">
+              Hola, my name is{' '}
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Alejandro.
+              </span>
+            </h1>
+            <p className="text-xl italic text-gray-400">(but you can call me Alex)</p>
+            <p className="max-w-xl text-gray-400">AI & Automation Engineer | Software Developer | Data-Driven Problem Solver</p>
+            <a
+              href="#projects"
+              className="rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-transform hover:scale-105"
+            >
+              View My Work
+            </a>
+          </div>
+        </section>
 
-      <section id="contact" className="section fade-in">
-        <h2 className="section-title">Contact</h2>
-        <p>Let's connect! You can reach me on:</p>
-        <div className="contact-links">
-          <a href="https://github.com/AlexMtzRmz0212" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i> GitHub</a>
-          <a href="https://linkedin.com/in/alejandro-mtz" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i> LinkedIn</a>
-          <a href="mailto:alejandro.martinez.rmz97@gmail.com"><i className="fas fa-envelope"></i> Email</a>
-          <a href="https://www.instagram.com/alexmtzrmz/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i> Instagram</a>
-          <a href="https://www.facebook.com/Alejandro.Martinez.1997" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i> Facebook</a>
-        </div>
-      </section>
+        <section id="about" className="py-24 px-6 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-10">About Me</h2>
+          <div className="space-y-4 text-gray-400 leading-relaxed">
+            <p>I'm Alex. Engineer, Coder, and Genius (working on the billionaire, playboy, philanthropist part). Basically, the guy you call when your automation stops automating. I build SCADA systems, train my AIs as they are my pets, and design software tools that turn "this takes forever" into "done already?" Python, SQL, TensorFlow, PLCs. Yeah, I speak fluent machine, you name it.</p>
+            <p>Human Languages? English and Spanish are a given. French and German are current bonus DLC I'm unlocking.</p>
+            <p>When I'm not busy making machines smarter, I'm automating my own life, playing baseball, or taking things apart just to prove I can put them back together better than before. Efficiency is my superpower, coffee just keeps it running at max RPM.</p>
+            <p>Go ahead and check out my projects below. If you like what you see or just want to chat about tech, sports, or life, hit me up in the contact section!</p>
+          </div>
+        </section>
 
-      <footer>
-        &copy; 2025 Alex. All rights reserved.
-      </footer>
+        <Projects />
+
+        <section id="contact" className="py-24 px-6 max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Contact</h2>
+          <p className="text-gray-400 mb-10">Let's connect! You can reach me on:</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            {[
+              { href: 'https://github.com/AlexMtzRmz0212', label: 'GitHub' },
+              { href: 'https://linkedin.com/in/alejandro-mtz', label: 'LinkedIn' },
+              { href: 'mailto:alejandro.martinez.rmz97@gmail.com', label: 'Email' },
+              { href: 'https://www.instagram.com/alexmtzrmz/', label: 'Instagram' },
+              { href: 'https://www.facebook.com/Alejandro.Martinez.1997', label: 'Facebook' },
+            ].map(({ href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith('mailto') ? undefined : '_blank'}
+                rel="noopener noreferrer"
+                className="rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm text-gray-300 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </section>
+
+      </main>
+
+      <Footer
+        logoText="Alex"
+        tagline="AI & Automation Engineer. Building things that work so you don't have to."
+        githubUser="AlexMtzRmz0212"
+        copyrightName="Alejandro Martinez"
+      />
 
       <Analytics />
-    </>
+    </div>
   );
 }
